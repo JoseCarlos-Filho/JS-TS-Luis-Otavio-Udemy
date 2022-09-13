@@ -22,7 +22,7 @@ novoElemento("h1", "numero");
 // Adiciona novo elemento no Array de Objetos.
 function novoElemento(tag, texto) {
   elementos.push({ tag, texto });
-  console.log(elementos);
+  console.table(elementos);
   return elementos;
   //return elementos.push({ tag, texto });
   // montarElementos(elementos);

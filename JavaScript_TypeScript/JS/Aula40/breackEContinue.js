@@ -42,6 +42,8 @@ const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 // com laço while, tome cuidado para não cair em um laço infinito.
 // para utilização da condição sempre incrementar ou decrementar antes,
 // das palavras reservadas continue e break.
+// continue: continua para próxima iteração
+// break: sai do laço
 let indice = 0;
 while (indice < numeros.length) {
   let numero = numeros[indice];

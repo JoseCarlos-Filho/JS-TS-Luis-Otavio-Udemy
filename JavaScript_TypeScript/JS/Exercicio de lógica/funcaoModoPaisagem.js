@@ -7,5 +7,6 @@
 // const ePaisagem = (largura, altura) => largura > altura ? true : false;
 // console.log(ePaisagem(200, 100));
 
+// Arrow function
 const imgPaisagem = (largura, altura) => largura > altura;
 console.log(imgPaisagem(100, 200));

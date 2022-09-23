@@ -13,6 +13,7 @@ const iniciar = document.querySelector(".iniciar");
 const pausar = document.querySelector(".pausar");
 const zerar = document.querySelector(".zerar");
 let segundos = 0;
+// let timer;
 let timer;
 
 // Função que inicia o relógio incrementando o segundo

@@ -2,6 +2,16 @@ const inputTarefas = document.querySelector(".input_tarefas");
 const btnTarefas = document.querySelector(".btn_tarefas");
 const listaTarefas = document.querySelector(".lista_tarefas");
 
+function botãoApagarLi(li) {
+  const botaoApagar = document.createElement("button");
+  botaoApagar.innerText = "Apagar";
+}
+
+function limpaInput() {
+  inputTarefas.value = "";
+  inputTarefas.focus();
+}
+
 function criaTagLi() {
   const li = document.createElement("li");
   return li;
@@ -21,6 +31,7 @@ function criaTarefa(textoInput) {
   const li = criaTagLi();
   li.innerText = textoInput;
   listaTarefas.appendChild(li);
+  limpaInput();
 }
 
 btnTarefas.addEventListener("click", () => {

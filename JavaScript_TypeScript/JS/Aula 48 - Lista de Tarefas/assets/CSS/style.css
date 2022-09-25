@@ -30,10 +30,6 @@ body {
   align-items: center;
 }
 
-.lista {
-  display: flex;
-}
-
 .container {
   margin: 100px 0px 100px 0px;
   padding: 25px;
@@ -51,16 +47,26 @@ body {
   flex-direction: column;
 }
 
-button {
-  margin: 20px 0px 0px 0px;
-  border: none;
+.lista {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.input_tarefas {
+  margin-right: 5px;
+  height: 30px;
+}
+
+.btn_add {
+  border: 1px solid var(--secundary-color);
 
   background: var(--primary-color);
   box-shadow: 8px 8px 20px var(--secundary-color);
   border-radius: 5px;
 
-  font-size: 18px;
-  color: var(--primary-color);
+  font-size: 15px;
+  color: var(--shadow);
 
   height: 30px;
   cursor: pointer;

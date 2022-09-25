@@ -7,8 +7,20 @@ function criaTagLi() {
   return li;
 }
 
+inputTarefas.addEventListener("keypress", (e) => {
+  // console.log(e);
+  if (e.keyCode === 13) {
+    // console.log("Enter precionado!!!");
+    if (!inputTarefas.value) return;
+    criaTarefa(inputTarefas.value);
+  }
+});
+
 function criaTarefa(textoInput) {
   // console.log(textoInput);
+  const li = criaTagLi();
+  li.innerText = textoInput;
+  listaTarefas.appendChild(li);
 }
 
 btnTarefas.addEventListener("click", () => {

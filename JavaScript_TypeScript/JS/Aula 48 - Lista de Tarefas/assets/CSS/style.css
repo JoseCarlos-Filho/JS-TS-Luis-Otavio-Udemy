@@ -58,7 +58,7 @@ body {
   height: 30px;
 }
 
-.btn_add {
+.btn_tarefas {
   border: 1px solid var(--secundary-color);
 
   background: var(--primary-color);

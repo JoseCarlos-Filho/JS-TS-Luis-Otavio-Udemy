@@ -2,9 +2,13 @@ const inputTarefas = document.querySelector(".input_tarefas");
 const btnTarefas = document.querySelector(".btn_tarefas");
 const listaTarefas = document.querySelector(".lista_tarefas");
 
-function botãoApagarLi(li) {
+function botaoApagar(li) {
+  li.innerText += " ";
   const botaoApagar = document.createElement("button");
   botaoApagar.innerText = "Apagar";
+  botãoApagar = setAttribute("class", "apagar");
+  botãoApagar = setAttribute("title", "Apagar esta tarefa");
+  li.appendChild(botaoApagar);
 }
 
 function limpaInput() {
@@ -32,6 +36,7 @@ function criaTarefa(textoInput) {
   li.innerText = textoInput;
   listaTarefas.appendChild(li);
   limpaInput();
+  botaoApagar(li);
 }
 
 btnTarefas.addEventListener("click", () => {

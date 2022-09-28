@@ -6,8 +6,8 @@ function botaoApagar(li) {
   li.innerText += " ";
   const botaoApagar = document.createElement("button");
   botaoApagar.innerText = "Apagar";
-  botãoApagar = setAttribute("class", "apagar");
-  botãoApagar = setAttribute("title", "Apagar esta tarefa");
+  botaoApagar.setAttribute("class", "apagar");
+  botaoApagar.setAttribute("title", "Apagar esta tarefa");
   li.appendChild(botaoApagar);
 }
 

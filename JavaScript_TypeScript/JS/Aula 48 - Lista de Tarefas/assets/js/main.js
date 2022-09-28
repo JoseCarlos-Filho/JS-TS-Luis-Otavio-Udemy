@@ -44,3 +44,11 @@ btnTarefas.addEventListener("click", () => {
   // console.log(inputTarefas.value);
   criaTarefa(inputTarefas.value);
 });
+
+document.addEventListener("click", (e) => {
+  const el = e.target;
+  // console.log(e); // pega onde esta sendo clicado na page
+  if (el.classList.contains("apagar")) {
+    console.log("Botão Apagar clicado");
+  }
+});

@@ -37,6 +37,7 @@ function criaTarefa(textoInput) {
   listaTarefas.appendChild(li);
   limpaInput();
   botaoApagar(li);
+  saveTasks();
 }
 
 btnTarefas.addEventListener("click", () => {
@@ -49,6 +50,17 @@ document.addEventListener("click", (e) => {
   const el = e.target;
   // console.log(e); // pega onde esta sendo clicado na page
   if (el.classList.contains("apagar")) {
-    console.log("Botão Apagar clicado");
+    // console.log("Botão Apagar clicado");
+    el.parentElement.remove(); // O pai do elemento será remivido, neste caso a tag <li></li> é o pai do elemento.
   }
 });
+
+function saveTasks() {
+  const tarefasNaTagLi = listaTarefas.querySelectorAll("li");
+  const listaDeTarefas = [];
+  // console.log(tarefasNaTagLi);
+
+  for (let tarefa of listaDeTarefas) {
+    console.log(tarefa.innerText);
+  }
+}

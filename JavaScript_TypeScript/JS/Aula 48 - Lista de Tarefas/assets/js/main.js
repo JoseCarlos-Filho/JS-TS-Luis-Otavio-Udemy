@@ -30,6 +30,14 @@ inputTarefas.addEventListener("keypress", (e) => {
   }
 });
 
+/*
+ * Função que cria a tarefa e recebe como parâmetro o texto do input, cria o elemento<li></li>
+ * com a função criaTagLi(), passa o parâmetro do input para o elemento criado no caso <li></li>
+ * adiciona o li na ul(declarada acima como listaTarefas) com o metodo appendChild();
+ * após adicionar na ul o input é limpo com a função limpaInput();
+ * adiciona o botão Apagar na ListaTarefas passando como parâmentro o elemento criado <li></li>
+ * salva a tarefa no localStorage através da função saveTasks();
+ */
 function criaTarefa(textoInput) {
   // console.log(textoInput);
   const li = criaTagLi();
@@ -40,6 +48,10 @@ function criaTarefa(textoInput) {
   saveTasks();
 }
 
+/*
+ * função que pega o evento do click do botão Adicionar Tarefa, verifica se o input tem informações
+ * se não tiver não retorna nada, mas se tiver cria a tarefa chamando a função criaTarefa()
+ */
 btnTarefas.addEventListener("click", () => {
   if (!inputTarefas.value) return;
   // console.log(inputTarefas.value);
@@ -47,7 +59,7 @@ btnTarefas.addEventListener("click", () => {
 });
 
 /*
- * Fuinção que captura o click no document, identifica se o elemento do botão apagar foi clicado.
+ * Função que captura o click no document, identifica se o elemento do botão apagar foi clicado.
  * após identificação a tarefa é apagada de acordo com o parentesco do elemento.
  * neste caso o texto da tarefa que esta dentro da tag <li></li> é apagado por <li></li> ser o elemento pai.
  */

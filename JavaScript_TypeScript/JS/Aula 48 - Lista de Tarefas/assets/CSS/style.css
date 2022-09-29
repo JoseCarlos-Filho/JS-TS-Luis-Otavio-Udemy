@@ -75,7 +75,7 @@ body {
 
 .card_list {
   position: relative;
-  left: -100px;
+  left: -50px;
 }
 
 .card_list li {

@@ -60,7 +60,12 @@ function saveTasks() {
   const listaDeTarefas = [];
   // console.log(tarefasNaTagLi);
 
-  for (let tarefa of listaDeTarefas) {
-    console.log(tarefa.innerText);
+  for (let tarefa of tarefasNaTagLi) {
+    let tarefaText = tarefa.innerText;
+    tarefaText = tarefaText.replace("Apagar", "").trim();
+    // console.log(tarefaText);
+    listaDeTarefas.push(tarefaText);
   }
+
+  console.log(listaDeTarefas);
 }

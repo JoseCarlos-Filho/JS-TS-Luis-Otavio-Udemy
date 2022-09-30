@@ -96,3 +96,12 @@ function saveTasks() {
   // console.log(tarefasJSON);
   localStorage.setItem("listaTarefas", tarefasJSON);
 }
+
+// adiciona as tarefas Salvas quanto a pagina for reaberta as tarefas continuam lá
+function addTasksSaved() {
+  const tarefas = localStorage.getItem("listaTarefas");
+  const listaDeTarefas = JSON.parse(tarefas);
+  console.log(ListaDeTarefas);
+}
+
+addTasksSaved();

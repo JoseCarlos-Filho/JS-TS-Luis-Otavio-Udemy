@@ -2,6 +2,10 @@ const inputTarefas = document.querySelector(".input_tarefas");
 const btnTarefas = document.querySelector(".btn_tarefas");
 const listaTarefas = document.querySelector(".lista_tarefas");
 
+/*
+ * Função que cria o botão Apagar para cada Tarefa da lista.
+ * Adicionando propriedades de classes e titulos no botão.
+ */
 function botaoApagar(li) {
   li.innerText += " ";
   const botaoApagar = document.createElement("button");
@@ -11,16 +15,28 @@ function botaoApagar(li) {
   li.appendChild(botaoApagar);
 }
 
+/*
+ * Função quw limpa o input após adicionar a Tarefa(task)
+ *
+ */
 function limpaInput() {
   inputTarefas.value = "";
   inputTarefas.focus();
 }
 
+/*
+ * Função que cria a tag <li></li> dentro da tag <ul></ul>
+ *
+ */
 function criaTagLi() {
   const li = document.createElement("li");
   return li;
 }
 
+/*
+ * adicionando tarefa através do evento de captura de tecla ENTER.
+ * inclui tarefa após teclar em ENTER.
+ */
 inputTarefas.addEventListener("keypress", (e) => {
   // console.log(e);
   if (e.keyCode === 13) {
@@ -97,11 +113,14 @@ function saveTasks() {
   localStorage.setItem("listaTarefas", tarefasJSON);
 }
 
-// adiciona as tarefas Salvas quanto a pagina for reaberta as tarefas continuam lá
+// adiciona as tarefas Salvas convertendo um JSON para um array.
 function addTasksSaved() {
   const tarefas = localStorage.getItem("listaTarefas");
   const listaDeTarefas = JSON.parse(tarefas);
-  console.log(ListaDeTarefas);
+  // console.log(listaDeTarefas);
+  for (let tarefa of listaDeTarefas) {
+    criaTarefa(tarefa);
+  }
 }
 
 addTasksSaved();

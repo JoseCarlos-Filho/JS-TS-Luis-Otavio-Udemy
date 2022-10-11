@@ -1,7 +1,7 @@
 /*
  * Funções de Callback - função que é executada após o termino de outra.
  * respeitando a regra conforme o tempo de resposta da web( simulado pela função
- * setTimeout())
+ * setTimeout()).
  */
 
 function rand(min = 1000, max = 3000) {

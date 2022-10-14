@@ -22,7 +22,9 @@ function criaCalculadora() {
       );
     },
 
-    btnParaDisplay(valor) {},
+    btnParaDisplay(valor) {
+      this.display.value += valor;
+    },
   };
 }
 

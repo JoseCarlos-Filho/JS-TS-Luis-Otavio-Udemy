@@ -4,14 +4,20 @@ function criaCalculadora() {
     display: document.querySelector(".display"),
 
     // METODOS
-    clearDisplay() {
-      this.display.value = "";
-    },
-
     inicia() {
       //   alert("Calculadora inicializada!");
       this.cliqueBotoes();
     },
+
+    clearDisplay() {
+      this.display.value = "";
+    },
+
+    apagaUm() {
+      this.display.value = this.display.value.slice(0, -1);
+    },
+
+    realizaConta() {},
 
     cliqueBotoes() {
       document.addEventListener("click", (e) => {
@@ -23,6 +29,14 @@ function criaCalculadora() {
 
         if (el.classList.contains("btn-clear")) {
           this.clearDisplay();
+        }
+
+        if (el.classList.contains("btn-del")) {
+          this.apagaUm();
+        }
+
+        if (el.classList.contains("btn-eq")) {
+          this.realizaConta();
         }
       });
     },

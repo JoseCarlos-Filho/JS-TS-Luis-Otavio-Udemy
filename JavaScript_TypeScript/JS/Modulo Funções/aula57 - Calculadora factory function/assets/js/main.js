@@ -8,6 +8,21 @@ function criaCalculadora() {
       //   alert("Calculadora inicializada!");
       this.cliqueBotoes();
     },
+    realizaConta() {
+      let conta = this.display.value;
+
+      try {
+        conta = eval(conta);
+
+        if (!conta) {
+          alert("Conta inválida");
+        }
+
+        this.display.value = conta;
+      } catch (e) {
+        alert("Conta inválida");
+      }
+    },
 
     clearDisplay() {
       this.display.value = "";
@@ -16,8 +31,6 @@ function criaCalculadora() {
     apagaUm() {
       this.display.value = this.display.value.slice(0, -1);
     },
-
-    realizaConta() {},
 
     cliqueBotoes() {
       document.addEventListener("click", (e) => {

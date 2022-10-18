@@ -12,9 +12,9 @@ function Pessoa(nome, sobrenome) {
     console.log(`este é o ID do usuário: ${ID} Metodo privado.`);
   };
 
-  // Atributos ou metodos públicos
   metodoInterno();
 
+  // Atributos ou metodos públicos
   this.nome = nome; // O mesmo que Pessoa.nome = nome
   this.sobrenome = sobrenome;
 

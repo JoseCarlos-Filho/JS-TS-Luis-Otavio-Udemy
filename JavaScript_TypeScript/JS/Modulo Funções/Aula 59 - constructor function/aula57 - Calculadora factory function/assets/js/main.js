@@ -5,6 +5,7 @@ function Calculadora() {
   this.capturaClick = () => {
     document.addEventListener("click", (event) => {
       const el = event.target;
+      if (el.classList.contains("btn-num")) this.addNumDisplay();
     });
   };
 

@@ -17,9 +17,9 @@ function Calculadora() {
 
   this.clear = () => (this.display.value = "");
 
-  this.inicia = () => {
-    this.capturaClick();
-  };
+  this.inicia = () => this.capturaClick();
+
+  this.del = () => (this.display.value = this.display.value.slice(0, -1));
 }
 
 const calculadora = new Calculadora();

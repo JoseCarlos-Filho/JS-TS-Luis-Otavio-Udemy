@@ -24,7 +24,10 @@ function Calculadora() {
     });
   };
 
-  this.addNumDisplay = (el) => (this.display.value += el.innerText);
+  this.addNumDisplay = (el) => {
+    this.display.value += el.innerText;
+    this.display.focus();
+  };
 
   this.clear = () => (this.display.value = "");
 

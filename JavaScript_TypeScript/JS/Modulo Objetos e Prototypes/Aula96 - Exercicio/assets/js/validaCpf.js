@@ -31,7 +31,6 @@ function masterCPF() {
     } else {
       const cpf = new ValidaCPF(cpfInput.value);
       console.log(cpf.valida());
-      //   mostraCPF(cpf);
       resultado.innerHTML = `<p>Cpf digitado: ${cpf.cpfPuro}</p>`;
     }
   });
@@ -55,6 +54,9 @@ function masterCPF() {
     const parcialCpf = this.cpfPuro.slice(0, -2);
     // constante que recebe o valor do primeiro digito a ser validado
     const digitoUm = this.criaDigito(parcialCpf);
+    const digitoDois = this.criaDigito(parcialCpf + digitoUm);
+    console.log("digito um :", digitoUm);
+    console.log("digito dois :", digitoDois);
     return true;
   };
 
@@ -66,11 +68,23 @@ function masterCPF() {
 
     // console.log(decrescenteArray);
 
-    const totalDigito = parcialCpfArray.reduce((acumulador, valor) => {
-      console.log(decrescenteArray, valor, decrescenteArray * valor);
+    let totalDigito = parcialCpfArray.reduce((acumulador, valor) => {
+      // repare que o valor é uma string, cuidado ao fazer operações matemáticas
+      //   deve-se converter em Numerico para garantir que o resultado seja do tipo number
+      //   console.log(decrescenteArray, valor, decrescenteArray * valor);
+      // somando o valor de acumulador com o resultado da multiplicação do decrescenteArray com o valor do parcialCpfArray
+      acumulador = acumulador + decrescenteArray * Number(valor);
+      //   console.log(acumulador, decrescenteArray);
       decrescenteArray--;
       return acumulador;
     }, 0);
+    // console.log(totalDigito);
+    // operação artimética para encontrar o primeiro digito da validação.
+    // pegando a soma total dos digitos realizado acima com o resto da divisão por 11.
+    const primeiroDigito = 11 - (totalDigito % 11);
+    // console.log(primeiroDigito);
+    if (primeiroDigito > 9) return 0;
+    return primeiroDigito;
   };
 }
 

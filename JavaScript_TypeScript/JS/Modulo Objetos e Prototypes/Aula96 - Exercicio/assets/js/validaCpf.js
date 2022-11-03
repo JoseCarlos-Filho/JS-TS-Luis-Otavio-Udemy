@@ -52,7 +52,7 @@ function masterCPF() {
     if (this.cpfPuro.length !== 11) {
       alert("Cpf inválido, quantidade de digitos excedido!");
       return (
-        (resultado.innerHTML = `<p>Cpf digitado: ${this.cpfPuro} Cpf inválido digitos excedido</p>`),
+        (resultado.innerHTML = `<p>Cpf digitado: ${this.cpfPuro} Cpf inválido verifique a quantia de digitos!</p>`),
         false
       );
     }

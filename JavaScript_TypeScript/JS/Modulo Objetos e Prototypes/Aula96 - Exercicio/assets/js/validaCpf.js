@@ -65,7 +65,8 @@ function masterCPF() {
     console.log("digito dois :", digitoDois);
     const novoCpf = parcialCpf + digitoUm + digitoDois;
     console.log(novoCpf);
-    resultado.innerHTML = `<p>Cpf digitado: ${this.cpfPuro} CPF Válido</p>`;
+    novoCpf === this.cpfPuro;
+    resultado.innerHTML = `<p>Cpf digitado: ${this.cpfPuro} é Válido</p>`;
     return true;
   };
 
@@ -92,8 +93,9 @@ function masterCPF() {
     // pegando a soma total dos digitos realizado acima com o resto da divisão por 11.
     const primeiroDigito = 11 - (totalDigito % 11);
     // console.log(primeiroDigito);
-    if (primeiroDigito > 9) return "0";
-    return String(primeiroDigito);
+    return primeiroDigito > 9 ? "0" : String(primeiroDigito);
+    // if (primeiroDigito > 9) return "0";
+    // return String(primeiroDigito);
   };
 }
 

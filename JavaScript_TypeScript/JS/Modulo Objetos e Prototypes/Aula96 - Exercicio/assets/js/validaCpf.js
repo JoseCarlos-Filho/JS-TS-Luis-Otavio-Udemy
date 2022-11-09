@@ -56,6 +56,12 @@ function masterCPF() {
         false
       );
     }
+    if (this.isSequencia()) {
+      return (
+        (resultado.innerHTML = `<p>Cpf digitado: ${this.cpfPuro} Cpf inválido verifique a quantia de digitos!</p>`),
+        false
+      );
+    }
     // Array parcial recebe o valor de 9 digitos removendo as duas ultimas posições
     const parcialCpf = this.cpfPuro.slice(0, -2);
     // constante que recebe o valor do primeiro digito a ser validado
@@ -67,7 +73,7 @@ function masterCPF() {
     console.log(novoCpf);
     novoCpf === this.cpfPuro;
     resultado.innerHTML = `<p>Cpf digitado: ${this.cpfPuro} é Válido</p>`;
-    return true;
+    return novoCpf;
   };
 
   ValidaCPF.prototype.criaDigito = function (cpfParcial) {
@@ -96,6 +102,12 @@ function masterCPF() {
     return primeiroDigito > 9 ? "0" : String(primeiroDigito);
     // if (primeiroDigito > 9) return "0";
     // return String(primeiroDigito);
+  };
+
+  // prototype isSequencia faz a validação para cpfs 111.111.111-11
+  ValidaCPF.prototype.isSequencia = function () {
+    const sequencia = this.cpfPuro[0].repeat(this.cpfPuro.length);
+    return sequencia === this.cpfPuro; // retorna true caso o cpf for uma sequencia de numeros iguais
   };
 }
 

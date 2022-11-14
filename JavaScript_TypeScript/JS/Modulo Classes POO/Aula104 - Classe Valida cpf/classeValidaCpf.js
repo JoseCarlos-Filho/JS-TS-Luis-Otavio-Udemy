@@ -22,12 +22,16 @@ class ValidaCPF {
     // na sequencia o método geraDigito é chamado para fazr o calculo de checagem do cpf
     const cpfSemDigitos = this.cpfLimpo.slice(0, -2);
     // console.log(cpfSemDigitos);
-    const digito1 = this.geraDigito(cpfSemDigitos);
-    const digito2 = this.geraDigito(cpfSemDigitos + digito1);
+    const digito1 = ValidaCPF.geraDigito(cpfSemDigitos);
+    const digito2 = ValidaCPF.geraDigito(cpfSemDigitos + digito1);
     this.novoCPF = cpfSemDigitos + digito1 + digito2;
   }
 
-  geraDigito(cpfSemDigitos) {
+  // O método geraDigito pode ser estático, pelo motivo de não usar em seu metodo
+  // a palavra reservada "this" que referente a instância da classe, neste caso
+  // colocamos a palavra "static" na frente do metodo. Na chamada deste método deve-se
+  // substituir a palavra reservada "this" pelo nome da classe no caso "ValidaCPF"
+  static geraDigito(cpfSemDigitos) {
     // método que verifica o penúltimo e o ultimo digito do cpf
     // de forma que valide ou não o cpf.
     let total = 0;

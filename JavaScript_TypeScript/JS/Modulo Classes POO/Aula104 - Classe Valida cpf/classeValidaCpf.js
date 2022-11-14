@@ -23,7 +23,8 @@ class ValidaCPF {
     const cpfSemDigitos = this.cpfLimpo.slice(0, -2);
     // console.log(cpfSemDigitos);
     const digito1 = this.geraDigito(cpfSemDigitos);
-    const digito2 = this.geraDigito(cpfSemDigitos) + digito1;
+    const digito2 = this.geraDigito(cpfSemDigitos + digito1);
+    this.novoCPF = cpfSemDigitos + digito1 + digito2;
   }
 
   geraDigito(cpfSemDigitos) {
@@ -54,11 +55,13 @@ class ValidaCPF {
     if (this.eSequencia()) return false;
     // Verifica  se gerou novo cpf
     this.geraNovoCpf();
+    console.log(this.novoCPF);
 
-    return "Teste chamada método valida()";
+    return this.novoCPF === this.cpfLimpo;
   }
 }
 
 let validacpf = new ValidaCPF("336.487.758-04");
 // validacpf = new ValidaCPF("999.999.999-99");
-console.log(validacpf.valida());
+// console.log(validacpf.valida());
+validacpf.valida() ? console.log("CPF Válido") : console.log("CPF Inválido");

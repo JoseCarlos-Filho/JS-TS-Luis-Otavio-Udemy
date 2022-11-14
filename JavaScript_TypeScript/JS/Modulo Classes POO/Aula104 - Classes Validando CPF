@@ -21,8 +21,9 @@ class ValidaCPF {
     // Neste método é passado p cpf limpo menos os 2 ultimos digitos
     // na sequencia o método geraDigito é chamado para fazr o calculo de checagem do cpf
     const cpfSemDigitos = this.cpfLimpo.slice(0, -2);
-    console.log(cpfSemDigitos);
+    // console.log(cpfSemDigitos);
     const digito1 = this.geraDigito(cpfSemDigitos);
+    const digito2 = this.geraDigito(cpfSemDigitos) + digito1;
   }
 
   geraDigito(cpfSemDigitos) {
@@ -32,8 +33,14 @@ class ValidaCPF {
     let reverso = cpfSemDigitos.length + 1;
 
     for (let stringNumerica of cpfSemDigitos) {
-      console.log(stringNumerica, typeof stringNumerica);
+      // console.log(stringNumerica, reverso);
+      total += reverso * Number(stringNumerica);
+      reverso--;
+      // console.log(stringNumerica, typeof stringNumerica);
     }
+    // console.log(total);
+    const digito = 11 - (total % 11);
+    return digito <= 9 ? String(digito) : "0";
   }
 
   valida() {
@@ -46,7 +53,7 @@ class ValidaCPF {
     // Verificação se o cpf é uma sequencia numérica;
     if (this.eSequencia()) return false;
     // Verifica  se gerou novo cpf
-    if (!this.geraNovoCpf()) return false;
+    this.geraNovoCpf();
 
     return "Teste chamada método valida()";
   }

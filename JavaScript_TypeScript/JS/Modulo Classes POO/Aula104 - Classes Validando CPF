@@ -9,6 +9,33 @@ class ValidaCPF {
     });
   }
 
+  eSequencia() {
+    // Nesta instrução de código o método eSequencia busca o caractere
+    // do cpfLimpo na posição 0 repetindo este caracter no tamanho total dos
+    // digitos do cpfLimpo de forma a verificar se o mesmo é ou não uma sequencia numérica.
+    return this.cpfLimpo.charAt(0).repeat(11) === this.cpfLimpo;
+    // return this.cpfLimpo.charAt(0).repeat(this.cpfLimpo.length);
+  }
+
+  geraNovoCpf() {
+    // Neste método é passado p cpf limpo menos os 2 ultimos digitos
+    // na sequencia o método geraDigito é chamado para fazr o calculo de checagem do cpf
+    const cpfSemDigitos = this.cpfLimpo.slice(0, -2);
+    console.log(cpfSemDigitos);
+    const digito1 = this.geraDigito(cpfSemDigitos);
+  }
+
+  geraDigito(cpfSemDigitos) {
+    // método que verifica o penúltimo e o ultimo digito do cpf
+    // de forma que valide ou não o cpf.
+    let total = 0;
+    let reverso = cpfSemDigitos.length + 1;
+
+    for (let stringNumerica of cpfSemDigitos) {
+      console.log(stringNumerica, typeof stringNumerica);
+    }
+  }
+
   valida() {
     // checagem do cpfLimpo verificando sua existência
     if (!this.cpfLimpo) return false;
@@ -16,9 +43,15 @@ class ValidaCPF {
     if (typeof this.cpfLimpo !== "string") return false;
     // Verificação da quantidade de caracteres do cpf igual a 11
     if (this.cpfLimpo.length !== 11) return false;
+    // Verificação se o cpf é uma sequencia numérica;
+    if (this.eSequencia()) return false;
+    // Verifica  se gerou novo cpf
+    if (!this.geraNovoCpf()) return false;
+
     return "Teste chamada método valida()";
   }
 }
 
-const validacpf = new ValidaCPF("336.487.758-04");
+let validacpf = new ValidaCPF("336.487.758-04");
+// validacpf = new ValidaCPF("999.999.999-99");
 console.log(validacpf.valida());

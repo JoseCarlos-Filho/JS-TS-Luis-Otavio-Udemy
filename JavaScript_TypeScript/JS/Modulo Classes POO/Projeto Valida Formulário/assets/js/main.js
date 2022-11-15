@@ -14,13 +14,34 @@ class CheckForm {
     e.preventDefault();
     const checkInputs = this.validInputs();
     const validPasswords = this.passwordState();
+
+    if (checkInputs && validPasswords) {
+      alert(`Dados do formulário enviado.`);
+      this.formulario.submit();
+    }
   }
 
   passwordState() {
     let valid = true;
 
     const senha = this.formulario.querySelector(".input-senha");
-    const repetirSenha = this.querySelector(".input-repetir_senha");
+    const repetirSenha = this.formulario.querySelector(".input-repetir_senha");
+
+    if (senha.value !== repetirSenha.value) {
+      valid = false;
+      this.createError(senha, "Campos senha e repetir senha devem ser iguais.");
+      this.createError(
+        repetirSenha,
+        "Campos senha e repetir senha devem ser iguais."
+      );
+    }
+
+    if (senha.value.length < 6 || senha.value.length > 12) {
+      valid = false;
+      this.createError(senha, "Senha deve conter entre 6 e 12 caracteres");
+    }
+
+    return valid;
   }
 
   validInputs() {

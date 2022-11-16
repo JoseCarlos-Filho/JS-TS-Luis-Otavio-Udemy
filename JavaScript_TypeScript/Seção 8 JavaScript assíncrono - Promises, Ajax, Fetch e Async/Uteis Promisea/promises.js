@@ -6,12 +6,13 @@ function aleatorio(min, max) {
 
 function esperaAi(msg, tempo) {
   return new Promise((resolve, reject) => {
-    if (typeof msg !== "string") {
-      reject("NO STRING");
-      return;
-    }
     setTimeout(() => {
-      resolve(msg);
+      if (typeof msg !== "string") {
+        reject("NO STRING");
+        return;
+      }
+
+      resolve(msg.toUpperCase() + " - Passei na promise!");
       return;
     }, tempo);
   });
@@ -19,17 +20,28 @@ function esperaAi(msg, tempo) {
 
 // Promise.all, Promise.race, Promise.resolve, Promise.reject
 const promises = [
-  "Primeiro valor",
-  esperaAi("Promise 1", 3000),
-  esperaAi("Promise 2", 500),
-  esperaAi("Promise 3", 1000),
-  "Outro Valor",
+  // "Primeiro valor",
+  esperaAi("Promise 1", aleatorio(1, 5)),
+  esperaAi("Promise 2", aleatorio(1, 5)),
+  esperaAi("Promise 3", aleatorio(1, 5)),
+  esperaAi(0000, aleatorio(1, 5)),
+  // "Outro Valor",
 ];
 
-Promise.all(promises)
-  .then(function (valor) {
-    console.log(valor);
-  })
-  .catch(function (erro) {
-    console.log(erro);
-  });
+// Promise.all -> resolve todas as promises
+// Promise.all(promises)
+//   .then(function (valor) {
+//     console.log(valor);
+//   })
+//   .catch(function (erro) {
+//     console.log(erro);
+//   });
+
+// Promise.race resolve a promise mais rápida.
+// Promise.race(promises)
+//   .then(function (valor) {
+//     console.log(valor);
+//   })
+//   .catch(function (erro) {
+//     console.log(erro);
+//   });

@@ -17,7 +17,33 @@ const request = (obj) => {
   });
 };
 
+// evento de captura do click, pegando a tag <a> com os links na page index.html
 document.addEventListener("click", (e) => {
   const el = e.target;
   const tag = el.tagName.toLowerCase();
+
+  if (tag === "a") {
+    e.preventDefault();
+    carregaPagina(el);
+  }
 });
+
+function carregaPagina(el) {
+  const href = el.getAttribute("href");
+
+  request({
+    method: "GET",
+    url: href,
+    success(response) {
+      loadResult(response);
+    },
+    error(errorText) {
+      console.log(errorText);
+    },
+  });
+}
+
+function loadResult(response) {
+  const result = document.querySelector(".resultado");
+  result.innerHTML = response;
+}

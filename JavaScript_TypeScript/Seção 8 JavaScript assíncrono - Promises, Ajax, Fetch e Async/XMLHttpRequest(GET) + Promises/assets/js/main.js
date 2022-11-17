@@ -1,19 +1,21 @@
 // Observação: xhr = XML Http Request padrão utilizado entre os desenvolvedores.
 const request = (obj) => {
-  const xhr = new XMLHttpRequest();
-  xhr.open(obj.method, obj.url, true);
-  xhr.send();
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open(obj.method, obj.url, true);
+    xhr.send();
 
-  xhr.addEventListener("load", () => {
-    if (xhr.status >= 200 && xhr.status < 300) {
-      obj.success(xhr.responseText);
-    } else {
-      obj.error(xhr.statusText);
-      //   obj.error({
-      //     code: xhr.status,
-      //     msg: xhr.statusText,
-      //   });
-    }
+    xhr.addEventListener("load", () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        resolve(xhr.responseText);
+      } else {
+        reject(xhr.statusText);
+        //   obj.error({
+        //     code: xhr.status,
+        //     msg: xhr.statusText,
+        //   });
+      }
+    });
   });
 };
 
@@ -31,16 +33,16 @@ document.addEventListener("click", (e) => {
 function carregaPagina(el) {
   const href = el.getAttribute("href");
 
-  request({
+  const objConfig = {
     method: "GET",
     url: href,
-    success(response) {
+  };
+
+  request(objConfig)
+    .then((response) => {
       loadResult(response);
-    },
-    error(errorText) {
-      console.log(errorText);
-    },
-  });
+    })
+    .catch((error) => console.error());
 }
 
 function loadResult(response) {

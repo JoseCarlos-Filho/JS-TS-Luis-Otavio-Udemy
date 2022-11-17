@@ -26,23 +26,23 @@ document.addEventListener("click", (e) => {
 
   if (tag === "a") {
     e.preventDefault();
-    carregaPagina(el);
+    loadPage(el);
   }
 });
 
-function carregaPagina(el) {
+async function loadPage(el) {
   const href = el.getAttribute("href");
 
   const objConfig = {
     method: "GET",
     url: href,
   };
-
-  request(objConfig)
-    .then((response) => {
-      loadResult(response);
-    })
-    .catch((error) => console.error());
+  try {
+    const response = await request(objConfig);
+    loadResult(response);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function loadResult(response) {

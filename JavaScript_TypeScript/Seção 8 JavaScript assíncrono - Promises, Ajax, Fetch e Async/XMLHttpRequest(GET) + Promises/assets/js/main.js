@@ -10,10 +10,6 @@ const request = (obj) => {
         resolve(xhr.responseText);
       } else {
         reject(xhr.statusText);
-        //   obj.error({
-        //     code: xhr.status,
-        //     msg: xhr.statusText,
-        //   });
       }
     });
   });

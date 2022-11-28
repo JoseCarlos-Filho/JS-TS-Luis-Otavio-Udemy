@@ -27,17 +27,16 @@ document.addEventListener("click", (e) => {
 });
 
 async function loadPage(el) {
-  const href = el.getAttribute("href");
-
-  const objConfig = {
-    method: "GET",
-    url: href,
-  };
   try {
-    const response = await request(objConfig);
-    loadResult(response);
+    const href = el.getAttribute("href");
+    const response = await fetch(href);
+    // obs: este é somente um exemplo de verificação, neste momento pode haver vários tipos de retorno.
+    if (response.status !== 200) throw new Error("Error 404!");
+
+    const html = await response.text();
+    loadResult(html);
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 }
 

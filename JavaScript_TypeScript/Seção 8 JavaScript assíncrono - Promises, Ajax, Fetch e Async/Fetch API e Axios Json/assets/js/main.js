@@ -1,4 +1,3 @@
-alert('Oi');
-function button (event) {
-    event.preventDefault();
-}
+fetch("pessoas.json")
+  .then((resposta) => resposta.json())
+  .then((json) => console.log(json));

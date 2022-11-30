@@ -1,7 +1,9 @@
-fetch("pessoas.json")
-  // primeiro then converte em json
-  .then((resposta) => resposta.json())
-  .then((json) => carregaElementos(json));
+// fetch("pessoas.json")
+//   // primeiro then converte em json
+//   .then((resposta) => resposta.json())
+//   .then((json) => carregaElementos(json));
+
+axios("pessoas.json").then((resposta) => carregaElementos(resposta.data));
 
 function carregaElementos(json) {
   const table = criaTable("table");

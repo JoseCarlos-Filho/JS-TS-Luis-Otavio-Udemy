@@ -129,6 +129,8 @@ __webpack_require__.r(__webpack_exports__);
 
 // importando o item padrão do modulo1.js no caso o export default(modulo1.js);
 // sempre que houver um import sem as chaves{}, estará importando o default do modulo1.js que neste caso é o nosso exemplo.
+ //ou
+// importa o default junto com os demais itens do  modulo1.js
 
 console.log(_modulo1__WEBPACK_IMPORTED_MODULE_0__.nome, _modulo1__WEBPACK_IMPORTED_MODULE_0__.sobrenome, _modulo1__WEBPACK_IMPORTED_MODULE_0__.idade);
 console.log(_modulo1__WEBPACK_IMPORTED_MODULE_0__.soma(20, 18));
@@ -136,6 +138,7 @@ var p1 = new _modulo1__WEBPACK_IMPORTED_MODULE_0__.Pessoa("Elaine", "Tiemi");
 console.log(p1);
 console.log(_modulo1__WEBPACK_IMPORTED_MODULE_0__);
 console.log((0,_modulo1__WEBPACK_IMPORTED_MODULE_0__["default"])(50, 8));
+console.log((0,_modulo1__WEBPACK_IMPORTED_MODULE_0__["default"])(41, 10), _modulo1__WEBPACK_IMPORTED_MODULE_0__.nome, _modulo1__WEBPACK_IMPORTED_MODULE_0__.sobrenome, _modulo1__WEBPACK_IMPORTED_MODULE_0__.idade, (0,_modulo1__WEBPACK_IMPORTED_MODULE_0__.soma)(1, 1));
 })();
 
 /******/ })()

@@ -6,7 +6,9 @@ import * as Modulogeral from "./modulo1";
 
 // importando o item padrão do modulo1.js no caso o export default(modulo1.js);
 // sempre que houver um import sem as chaves{}, estará importando o default do modulo1.js que neste caso é o nosso exemplo.
-import subtracao from "./modulo1";
+import subtracao from "./modulo1"; //ou
+// importa o default junto com os demais itens do  modulo1.js
+import sub, { nome, sobrenome, idade, soma } from "./modulo1";
 
 console.log(Modulogeral.nome, Modulogeral.sobrenome, Modulogeral.idade);
 console.log(Modulogeral.soma(20, 18));
@@ -14,3 +16,4 @@ const p1 = new Modulogeral.Pessoa("Elaine", "Tiemi");
 console.log(p1);
 console.log(Modulogeral);
 console.log(subtracao(50, 8));
+console.log(sub(41, 10), nome, sobrenome, idade, soma(1, 1));

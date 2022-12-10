@@ -64,3 +64,5 @@ export default class ValidaCPF {
     return this.novoCPF === this.cpfLimpo;
   }
 }
+
+console.log("Opa funcionou!!!");

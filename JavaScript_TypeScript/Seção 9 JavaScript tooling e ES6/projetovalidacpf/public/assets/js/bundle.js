@@ -2,6 +2,161 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/modules/GeraCPF.js":
+/*!********************************!*\
+  !*** ./src/modules/GeraCPF.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ GeraCPF)
+/* harmony export */ });
+/* harmony import */ var _ValidaCPF__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ValidaCPF */ "./src/modules/ValidaCPF.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+var GeraCPF = /*#__PURE__*/function () {
+  function GeraCPF() {
+    _classCallCheck(this, GeraCPF);
+  }
+  _createClass(GeraCPF, [{
+    key: "rand",
+    value: function rand() {
+      var min = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 100000000;
+      var max = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 999999999;
+      return String(Math.floor(Math.random() * (max - min) + min));
+    }
+  }, {
+    key: "formataCpf",
+    value: function formataCpf(cpf) {
+      return cpf.slice(0, 3) + "." + cpf.slice(3, 6) + "." + cpf.slice(6, 9) + "-" + cpf.slice(9, 11);
+    }
+  }, {
+    key: "geraNovoCpf",
+    value: function geraNovoCpf() {
+      var cpfSemDigitos = this.rand();
+      var digito1 = _ValidaCPF__WEBPACK_IMPORTED_MODULE_0__["default"].geraDigito(cpfSemDigitos);
+      var digito2 = _ValidaCPF__WEBPACK_IMPORTED_MODULE_0__["default"].geraDigito(cpfSemDigitos + digito1);
+      var novoCpf = cpfSemDigitos + digito1 + digito2;
+      return this.formataCpf(novoCpf);
+    }
+  }]);
+  return GeraCPF;
+}();
+
+
+/***/ }),
+
+/***/ "./src/modules/ValidaCPF.js":
+/*!**********************************!*\
+  !*** ./src/modules/ValidaCPF.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ValidaCPF)
+/* harmony export */ });
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+// Construindo a solução de validação de CPF com Classes
+var ValidaCPF = /*#__PURE__*/function () {
+  function ValidaCPF(cpfEnviado) {
+    _classCallCheck(this, ValidaCPF);
+    Object.defineProperty(this, "cpfLimpo", {
+      writable: false,
+      enumerable: false,
+      configurable: false,
+      value: cpfEnviado.replace(/\D+/g, "") //expresão regular que retira os ponto etraços e deixa somente o número limpo
+    });
+  }
+  _createClass(ValidaCPF, [{
+    key: "eSequencia",
+    value: function eSequencia() {
+      // Nesta instrução de código o método eSequencia busca o caractere
+      // do cpfLimpo na posição 0 repetindo este caracter no tamanho total dos
+      // digitos do cpfLimpo de forma a verificar se o mesmo é ou não uma sequencia numérica.
+      return this.cpfLimpo.charAt(0).repeat(11) === this.cpfLimpo;
+      // return this.cpfLimpo.charAt(0).repeat(this.cpfLimpo.length);
+    }
+  }, {
+    key: "geraNovoCpf",
+    value: function geraNovoCpf() {
+      // Neste método é passado p cpf limpo menos os 2 ultimos digitos
+      // na sequencia o método geraDigito é chamado para fazr o calculo de checagem do cpf
+      var cpfSemDigitos = this.cpfLimpo.slice(0, -2);
+      // console.log(cpfSemDigitos);
+      var digito1 = ValidaCPF.geraDigito(cpfSemDigitos);
+      var digito2 = ValidaCPF.geraDigito(cpfSemDigitos + digito1);
+      this.novoCPF = cpfSemDigitos + digito1 + digito2;
+    }
+
+    // O método geraDigito pode ser estático, pelo motivo de não usar em seu metodo
+    // a palavra reservada "this" que referente a instância da classe, neste caso
+    // colocamos a palavra "static" na frente do metodo. Na chamada deste método deve-se
+    // substituir a palavra reservada "this" pelo nome da classe no caso "ValidaCPF"
+  }, {
+    key: "valida",
+    value: function valida() {
+      // checagem do cpfLimpo verificando sua existência
+      if (!this.cpfLimpo) return false;
+      // Verificação se cpfLimpo não é uma string
+      if (typeof this.cpfLimpo !== "string") return false;
+      // Verificação da quantidade de caracteres do cpf igual a 11
+      if (this.cpfLimpo.length !== 11) return false;
+      // Verificação se o cpf é uma sequencia numérica;
+      if (this.eSequencia()) return false;
+      // Verifica  se gerou novo cpf
+      this.geraNovoCpf();
+      console.log(this.novoCPF);
+      return this.novoCPF === this.cpfLimpo;
+    }
+  }], [{
+    key: "geraDigito",
+    value: function geraDigito(cpfSemDigitos) {
+      // método que verifica o penúltimo e o ultimo digito do cpf
+      // de forma que valide ou não o cpf.
+      var total = 0;
+      var reverso = cpfSemDigitos.length + 1;
+      var _iterator = _createForOfIteratorHelper(cpfSemDigitos),
+        _step;
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var stringNumerica = _step.value;
+          // console.log(stringNumerica, reverso);
+          total += reverso * Number(stringNumerica);
+          reverso--;
+          // console.log(stringNumerica, typeof stringNumerica);
+        }
+        // console.log(total);
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+      var digito = 11 - total % 11;
+      return digito <= 9 ? String(digito) : "0";
+    }
+  }]);
+  return ValidaCPF;
+}();
+
+console.log("Opa funcionou!!!");
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/assets/CSS/style.css":
 /*!************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/assets/CSS/style.css ***!
@@ -21,7 +176,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ":root {\r\n  --primary-color: rgb(205, 206, 207);\r\n  --secundary-color: rgb(82, 83, 85);\r\n  --thirdy-color: rgb(229, 236, 243);\r\n  --fourty-color: rgb(88, 123, 169);\r\n  --shadow: rgb(4, 18, 80);\r\n  --active-text-color: rgb(4, 14, 91);\r\n  --active-color: rgb(244, 245, 250);\r\n  --active-shadow-color: rgb(74, 26, 129);\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n  outline: 0;\r\n}\r\n\r\nbody {\r\n  font-family: \"Open sans\", sans-serif;\r\n\r\n  margin: 0;\r\n  padding: 0;\r\n\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n  background-repeat: no-repeat;\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.container {\r\n  width: 50%;\r\n  margin: 100px 0px 100px 0px;\r\n  padding: 25px;\r\n\r\n  border-radius: 10px;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    var(--thirdy-color),\r\n    var(--fourty-color)\r\n  );\r\n  box-shadow: 8px 8px 15px var(--shadow);\r\n\r\n  display: flex;\r\n  align-items: center;\r\n  flex-direction: column;\r\n}\r\n\r\nform {\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\nlabel {\r\n  margin: 5px;\r\n}\r\n\r\nbutton {\r\n  margin: 20px 0px 0px 0px;\r\n  border: none;\r\n\r\n  background: var(--primary-color);\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n  box-shadow: 8px 8px 20px var(--secundary-color);\r\n\r\n  font-size: 18px;\r\n  color: var(--primary-color);\r\n\r\n  height: 30px;\r\n  cursor: pointer;\r\n}\r\n\r\ninput {\r\n  font-size: 20px;\r\n  height: 30px;\r\n  padding: 0px 20px;\r\n}\r\n\r\ninput:focus {\r\n  outline: 1px solid var(--primary-color);\r\n}\r\n\r\ninput:hover {\r\n  background: var(--fourty-color);\r\n  cursor: pointer;\r\n}\r\n\r\ninput:active {\r\n  background: var(--active-color);\r\n  color: var(--active-text-color);\r\n  box-shadow: 8px 8px 20px var(--active-shadow-color);\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/assets/CSS/style.css"],"names":[],"mappings":"AAAA;EACE,mCAAmC;EACnC,kCAAkC;EAClC,kCAAkC;EAClC,iCAAiC;EACjC,wBAAwB;EACxB,mCAAmC;EACnC,kCAAkC;EAClC,uCAAuC;AACzC;;AAEA;EACE,sBAAsB;EACtB,UAAU;AACZ;;AAEA;EACE,oCAAoC;;EAEpC,SAAS;EACT,UAAU;;EAEV;;;;GAIC;EACD,4BAA4B;;EAE5B,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,UAAU;EACV,2BAA2B;EAC3B,aAAa;;EAEb,mBAAmB;EACnB;;;;GAIC;EACD,sCAAsC;;EAEtC,aAAa;EACb,mBAAmB;EACnB,sBAAsB;AACxB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,WAAW;EACX,aAAa;AACf;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,wBAAwB;EACxB,YAAY;;EAEZ,gCAAgC;EAChC;;;;GAIC;EACD,+CAA+C;;EAE/C,eAAe;EACf,2BAA2B;;EAE3B,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,eAAe;EACf,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE,uCAAuC;AACzC;;AAEA;EACE,+BAA+B;EAC/B,eAAe;AACjB;;AAEA;EACE,+BAA+B;EAC/B,+BAA+B;EAC/B,mDAAmD;AACrD","sourcesContent":[":root {\r\n  --primary-color: rgb(205, 206, 207);\r\n  --secundary-color: rgb(82, 83, 85);\r\n  --thirdy-color: rgb(229, 236, 243);\r\n  --fourty-color: rgb(88, 123, 169);\r\n  --shadow: rgb(4, 18, 80);\r\n  --active-text-color: rgb(4, 14, 91);\r\n  --active-color: rgb(244, 245, 250);\r\n  --active-shadow-color: rgb(74, 26, 129);\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n  outline: 0;\r\n}\r\n\r\nbody {\r\n  font-family: \"Open sans\", sans-serif;\r\n\r\n  margin: 0;\r\n  padding: 0;\r\n\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n  background-repeat: no-repeat;\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.container {\r\n  width: 50%;\r\n  margin: 100px 0px 100px 0px;\r\n  padding: 25px;\r\n\r\n  border-radius: 10px;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    var(--thirdy-color),\r\n    var(--fourty-color)\r\n  );\r\n  box-shadow: 8px 8px 15px var(--shadow);\r\n\r\n  display: flex;\r\n  align-items: center;\r\n  flex-direction: column;\r\n}\r\n\r\nform {\r\n  display: flex;\r\n  flex-direction: column;\r\n  width: 100%;\r\n  padding: 10px;\r\n}\r\n\r\nlabel {\r\n  margin: 5px;\r\n}\r\n\r\nbutton {\r\n  margin: 20px 0px 0px 0px;\r\n  border: none;\r\n\r\n  background: var(--primary-color);\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n  box-shadow: 8px 8px 20px var(--secundary-color);\r\n\r\n  font-size: 18px;\r\n  color: var(--primary-color);\r\n\r\n  height: 30px;\r\n  cursor: pointer;\r\n}\r\n\r\ninput {\r\n  font-size: 20px;\r\n  height: 30px;\r\n  padding: 0px 20px;\r\n}\r\n\r\ninput:focus {\r\n  outline: 1px solid var(--primary-color);\r\n}\r\n\r\ninput:hover {\r\n  background: var(--fourty-color);\r\n  cursor: pointer;\r\n}\r\n\r\ninput:active {\r\n  background: var(--active-color);\r\n  color: var(--active-text-color);\r\n  box-shadow: 8px 8px 20px var(--active-shadow-color);\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\r\n  --primary-color: #cdcecf;\r\n  --secundary-color: #525355;\r\n  --thirdy-color: #e5ecf3;\r\n  --fourty-color: #587ba9;\r\n  --shadow: #041250;\r\n  --active-text-color: #040e5b;\r\n  --active-color: #f4f5fa;\r\n  --active-shadow-color: #4a1a81;\r\n  --shadow-numero: #18403f;\r\n  --hover-numero: #040404;\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n  outline: 0;\r\n}\r\n\r\nbody {\r\n  font-family: \"Open sans\", sans-serif;\r\n\r\n  margin: 0;\r\n  padding: 0;\r\n  height: 100vh;\r\n\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.container {\r\n  padding: 3rem;\r\n  margin: 5rem;\r\n\r\n  border-radius: 10px;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    var(--thirdy-color),\r\n    var(--fourty-color)\r\n  );\r\n  box-shadow: 8px 8px 15px var(--shadow);\r\n}\r\n\r\n.container h1 {\r\n  text-align: center;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.cpf-gerado {\r\n  font-size: 2em;\r\n  font-weight: bold;\r\n  font-style: italic;\r\n  font-family: \"Courier New\", monospace;\r\n  letter-spacing: 3px;\r\n  color: var(--primary-color);\r\n  text-align: center;\r\n  margin-bottom: 1rem;\r\n  background: var(--secundary-color);\r\n  padding: 1rem;\r\n  border: 3px solid var(--shadow);\r\n  border-radius: 0.5em;\r\n  box-shadow: 0px 10px 15px var(--shadow-numero);\r\n  cursor: pointer;\r\n  /* display: flex;\r\n  align-items: center; */\r\n}\r\n\r\n.cpf-gerado:hover {\r\n  background: var(--shadow);\r\n  color: var(--thirdy-color);\r\n  border: 3px solid var(--shadow-numero);\r\n  box-shadow: 0px 10px 15px var(--hover-numero);\r\n  cursor: pointer;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/assets/CSS/style.css"],"names":[],"mappings":"AAAA;EACE,wBAAwB;EACxB,0BAA0B;EAC1B,uBAAuB;EACvB,uBAAuB;EACvB,iBAAiB;EACjB,4BAA4B;EAC5B,uBAAuB;EACvB,8BAA8B;EAC9B,wBAAwB;EACxB,uBAAuB;AACzB;;AAEA;EACE,sBAAsB;EACtB,UAAU;AACZ;;AAEA;EACE,oCAAoC;;EAEpC,SAAS;EACT,UAAU;EACV,aAAa;;EAEb;;;;GAIC;EACD,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,YAAY;;EAEZ,mBAAmB;EACnB;;;;GAIC;EACD,sCAAsC;AACxC;;AAEA;EACE,kBAAkB;EAClB,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,iBAAiB;EACjB,kBAAkB;EAClB,qCAAqC;EACrC,mBAAmB;EACnB,2BAA2B;EAC3B,kBAAkB;EAClB,mBAAmB;EACnB,kCAAkC;EAClC,aAAa;EACb,+BAA+B;EAC/B,oBAAoB;EACpB,8CAA8C;EAC9C,eAAe;EACf;wBACsB;AACxB;;AAEA;EACE,yBAAyB;EACzB,0BAA0B;EAC1B,sCAAsC;EACtC,6CAA6C;EAC7C,eAAe;AACjB","sourcesContent":[":root {\r\n  --primary-color: #cdcecf;\r\n  --secundary-color: #525355;\r\n  --thirdy-color: #e5ecf3;\r\n  --fourty-color: #587ba9;\r\n  --shadow: #041250;\r\n  --active-text-color: #040e5b;\r\n  --active-color: #f4f5fa;\r\n  --active-shadow-color: #4a1a81;\r\n  --shadow-numero: #18403f;\r\n  --hover-numero: #040404;\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n  outline: 0;\r\n}\r\n\r\nbody {\r\n  font-family: \"Open sans\", sans-serif;\r\n\r\n  margin: 0;\r\n  padding: 0;\r\n  height: 100vh;\r\n\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.container {\r\n  padding: 3rem;\r\n  margin: 5rem;\r\n\r\n  border-radius: 10px;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    var(--thirdy-color),\r\n    var(--fourty-color)\r\n  );\r\n  box-shadow: 8px 8px 15px var(--shadow);\r\n}\r\n\r\n.container h1 {\r\n  text-align: center;\r\n  margin-bottom: 40px;\r\n}\r\n\r\n.cpf-gerado {\r\n  font-size: 2em;\r\n  font-weight: bold;\r\n  font-style: italic;\r\n  font-family: \"Courier New\", monospace;\r\n  letter-spacing: 3px;\r\n  color: var(--primary-color);\r\n  text-align: center;\r\n  margin-bottom: 1rem;\r\n  background: var(--secundary-color);\r\n  padding: 1rem;\r\n  border: 3px solid var(--shadow);\r\n  border-radius: 0.5em;\r\n  box-shadow: 0px 10px 15px var(--shadow-numero);\r\n  cursor: pointer;\r\n  /* display: flex;\r\n  align-items: center; */\r\n}\r\n\r\n.cpf-gerado:hover {\r\n  background: var(--shadow);\r\n  color: var(--thirdy-color);\r\n  border: 3px solid var(--shadow-numero);\r\n  box-shadow: 0px 10px 15px var(--hover-numero);\r\n  cursor: pointer;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -590,8 +745,15 @@ var __webpack_exports__ = {};
   !*** ./src/main.js ***!
   \*********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_CSS_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/CSS/style.css */ "./src/assets/CSS/style.css");
+/* harmony import */ var _modules_GeraCPF__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/GeraCPF */ "./src/modules/GeraCPF.js");
+/* harmony import */ var _assets_CSS_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/CSS/style.css */ "./src/assets/CSS/style.css");
 
+
+(function () {
+  var gera = new _modules_GeraCPF__WEBPACK_IMPORTED_MODULE_0__["default"]();
+  var cpfGerado = document.querySelector(".cpf-gerado");
+  cpfGerado.innerHTML = gera.geraNovoCpf();
+})();
 })();
 
 /******/ })()

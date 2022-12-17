@@ -4,30 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modelo</title>
+    <title>Gerador de senhas</title>
   </head>
   <body>
     <section class="container">
-      <h1>Modelo de página teste</h1>
-      <p>
-        There is no method for completely preventing decompression sickness
-        caused by flying in an airplane after diving.
-      </p>
-      <form action="">
-        <label for="input-teste-1">Label teste #1</label>
-        <input type="text" id="input-teste-1" />
+      <h1>Gerador de senhas</h1>
 
-        <label for="input-teste-2">Label teste #2</label>
-        <input type="text" id="input-teste-2" />
+      <div class="senha-gerada"></div>
 
-        <label for="input-teste-3">Label teste #3</label>
-        <input type="text" id="input-teste-3" />
+      <ul>
+        <li>
+          <label for="caracteres"> Quantidade de Caracteres </label>
+          <input class="caracteres" type="number" min="1" max="50" />
+        </li>
+        <li>
+          <label for="chk-maiusculas"> Adicionar maiúsculas </label>
+          <input class="chk-maiusculas" type="checkbox" checked />
+        </li>
+        <li>
+          <label for="chk-minusculas"> Adicionar minúsculas </label>
+          <input class="chk-minusculas" type="checkbox" checked />
+        </li>
+        <li>
+          <label for="chk-numeros"> Adicionar números </label>
+          <input class="chk-numeros" type="checkbox" checked />
+        </li>
+        <li>
+          <label for="chk-simbolos"> Adicionar símbolos </label>
+          <input class="chk-simbolos" type="checkbox" checked />
+        </li>
+      </ul>
 
-        <label for="input-teste-4">Label teste #4</label>
-        <input type="text" id="input-teste-4" />
-
-        <button>Enviar</button>
-      </form>
+      <button class="gerar-senha">Gerar senha</button>
     </section>
 
     <script src="./assets/js/bundle.js"></script>

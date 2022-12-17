@@ -2,6 +2,89 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/modules/formGeraSenha.js":
+/*!**************************************!*\
+  !*** ./src/modules/formGeraSenha.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _geradores__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./geradores */ "./src/modules/geradores.js");
+
+var senhaGerada = document.querySelector(".senha-gerada");
+var qtdCaracteres = document.querySelector(".qtd-caracteres");
+var chkMaiuscula = document.querySelector(".chk-maiusculas");
+var chkMinuscula = document.querySelector(".chk-minusculas");
+var chkNumero = document.querySelector(".chk-numeros");
+var chkSimbolo = document.querySelector(".chk-simbolos");
+var gerarSenha = document.querySelector(".gerar-senha");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
+  gerarSenha.addEventListener("click", function () {
+    senhaGerada.innerHTML = gera();
+  });
+});
+function gera() {
+  var senha = (0,_geradores__WEBPACK_IMPORTED_MODULE_0__["default"])(qtdCaracteres.value, chkMaiuscula.checked, chkMinuscula.checked, chkNumero.checked, chkSimbolo.checked);
+  return senha || "Nada selecionado!!!";
+}
+
+/***/ }),
+
+/***/ "./src/modules/geradores.js":
+/*!**********************************!*\
+  !*** ./src/modules/geradores.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ geraSenha)
+/* harmony export */ });
+// arraw function gera numero aleatório
+// Obs: o range de numeros passado para a função rand é referente a tabela ASCII
+var rand = function rand(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+// gera letra maiuscula apartir do numero aleatório do range informado na função rand..
+var geraMaiuscula = function geraMaiuscula() {
+  return String.fromCharCode(rand(65, 91));
+};
+
+// gera letra minusculas a partir do número aleatório do range informado na função rand.
+var geraMinuscula = function geraMinuscula() {
+  return String.fromCharCode(rand(97, 123));
+};
+
+// gera letra número a partir do número aleatório do range informado na função rand.
+var geraNumero = function geraNumero() {
+  return String.fromCharCode(rand(48, 58));
+};
+
+// String de simbolos
+var simbolos = ",.;~^[]{}!@#$%*()_+=-";
+
+// gera simbolo de acordo com o range da minha string de simbolos.
+var geraSimbolo = function geraSimbolo() {
+  return simbolos[rand(0, simbolos.length)];
+};
+function geraSenha(quantidade, maiusculas, minusculas, numeros, simbolos) {
+  var senhaArray = [];
+  quantidade = Number(quantidade);
+  for (var i = 0; i < quantidade; i++) {
+    maiusculas && senhaArray.push(geraMaiuscula());
+    minusculas && senhaArray.push(geraMinuscula());
+    numeros && senhaArray.push(geraNumero());
+    simbolos && senhaArray.push(geraSimbolo());
+  }
+  return senhaArray.join("").slice(0, quantidade);
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./src/assets/CSS/style.css":
 /*!************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./src/assets/CSS/style.css ***!
@@ -22,7 +105,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ":root {\r\n  --primary-color: rgb(205, 206, 207);\r\n  --secundary-color: rgb(82, 83, 85);\r\n  --thirdy-color: rgb(229, 236, 243);\r\n  --fourty-color: rgb(88, 123, 169);\r\n  --shadow: rgb(4, 18, 80);\r\n  --active-text-color: rgb(4, 14, 91);\r\n  --active-color: rgb(244, 245, 250);\r\n  --active-shadow-color: rgb(74, 26, 129);\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n  outline: 0;\r\n}\r\n\r\nbody {\r\n  font-family: \"Montserrat\", sans-serif;\r\n\r\n  margin: 0;\r\n  padding: 0;\r\n  height: 100vh;\r\n\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.container {\r\n  width: 50%;\r\n  margin: 100px 0px 100px 0px;\r\n  padding: 25px;\r\n\r\n  border-radius: 10px;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    var(--thirdy-color),\r\n    var(--fourty-color)\r\n  );\r\n  box-shadow: 8px 8px 15px var(--shadow);\r\n}\r\n\r\nsenha-gerada {\r\n  font-size: 2em;\r\n  color: var(--secundary-color);\r\n}\r\n\r\n.container li {\r\n  padding: 1em 0 0 1em;\r\n  list-style: \"\\1F4CE\";\r\n}\r\n\r\n.gerar-senha {\r\n  width: 35%;\r\n  height: 30px;\r\n  font-size: 1em;\r\n  border: none;\r\n  border-radius: 15px;\r\n  background: var(--primary-color);\r\n  position: relative;\r\n  left: 35%;\r\n  cursor: pointer;\r\n}\r\n\r\n.gerar-senha:hover {\r\n  transition: 3s;\r\n  background: var(--secundary-color);\r\n}\r\n\r\ninput[type=\"checkbox\"] {\r\n  width: 15px;\r\n  height: 15px;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/assets/CSS/style.css"],"names":[],"mappings":"AAEA;EACE,mCAAmC;EACnC,kCAAkC;EAClC,kCAAkC;EAClC,iCAAiC;EACjC,wBAAwB;EACxB,mCAAmC;EACnC,kCAAkC;EAClC,uCAAuC;AACzC;;AAEA;EACE,sBAAsB;EACtB,UAAU;AACZ;;AAEA;EACE,qCAAqC;;EAErC,SAAS;EACT,UAAU;EACV,aAAa;;EAEb;;;;GAIC;;EAED,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,UAAU;EACV,2BAA2B;EAC3B,aAAa;;EAEb,mBAAmB;EACnB;;;;GAIC;EACD,sCAAsC;AACxC;;AAEA;EACE,cAAc;EACd,6BAA6B;AAC/B;;AAEA;EACE,oBAAoB;EACpB,oBAAoB;AACtB;;AAEA;EACE,UAAU;EACV,YAAY;EACZ,cAAc;EACd,YAAY;EACZ,mBAAmB;EACnB,gCAAgC;EAChC,kBAAkB;EAClB,SAAS;EACT,eAAe;AACjB;;AAEA;EACE,cAAc;EACd,kCAAkC;AACpC;;AAEA;EACE,WAAW;EACX,YAAY;AACd","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap\");\r\n\r\n:root {\r\n  --primary-color: rgb(205, 206, 207);\r\n  --secundary-color: rgb(82, 83, 85);\r\n  --thirdy-color: rgb(229, 236, 243);\r\n  --fourty-color: rgb(88, 123, 169);\r\n  --shadow: rgb(4, 18, 80);\r\n  --active-text-color: rgb(4, 14, 91);\r\n  --active-color: rgb(244, 245, 250);\r\n  --active-shadow-color: rgb(74, 26, 129);\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n  outline: 0;\r\n}\r\n\r\nbody {\r\n  font-family: \"Montserrat\", sans-serif;\r\n\r\n  margin: 0;\r\n  padding: 0;\r\n  height: 100vh;\r\n\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.container {\r\n  width: 50%;\r\n  margin: 100px 0px 100px 0px;\r\n  padding: 25px;\r\n\r\n  border-radius: 10px;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    var(--thirdy-color),\r\n    var(--fourty-color)\r\n  );\r\n  box-shadow: 8px 8px 15px var(--shadow);\r\n}\r\n\r\nsenha-gerada {\r\n  font-size: 2em;\r\n  color: var(--secundary-color);\r\n}\r\n\r\n.container li {\r\n  padding: 1em 0 0 1em;\r\n  list-style: \"\\1F4CE\";\r\n}\r\n\r\n.gerar-senha {\r\n  width: 35%;\r\n  height: 30px;\r\n  font-size: 1em;\r\n  border: none;\r\n  border-radius: 15px;\r\n  background: var(--primary-color);\r\n  position: relative;\r\n  left: 35%;\r\n  cursor: pointer;\r\n}\r\n\r\n.gerar-senha:hover {\r\n  transition: 3s;\r\n  background: var(--secundary-color);\r\n}\r\n\r\ninput[type=\"checkbox\"] {\r\n  width: 15px;\r\n  height: 15px;\r\n}\r\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\r\n  --primary-color: rgb(205, 206, 207);\r\n  --secundary-color: rgb(82, 83, 85);\r\n  --thirdy-color: rgb(229, 236, 243);\r\n  --fourty-color: rgb(88, 123, 169);\r\n  --shadow: rgb(4, 18, 80);\r\n  --active-text-color: rgb(4, 14, 91);\r\n  --active-color: rgb(244, 245, 250);\r\n  --active-shadow-color: rgb(74, 26, 129);\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n  outline: 0;\r\n}\r\n\r\nbody {\r\n  font-family: \"Montserrat\", sans-serif;\r\n\r\n  margin: 0;\r\n  padding: 0;\r\n  height: 100vh;\r\n\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.container {\r\n  width: 50%;\r\n  margin: 100px 0px 100px 0px;\r\n  padding: 25px;\r\n\r\n  border-radius: 10px;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    var(--thirdy-color),\r\n    var(--fourty-color)\r\n  );\r\n  box-shadow: 8px 8px 15px var(--shadow);\r\n}\r\n\r\nh1 {\r\n  font-size: 2em;\r\n  color: var(--shadow);\r\n}\r\n\r\n.senha-gerada {\r\n  font-size: 1.5em;\r\n  color: var(--secundary-color);\r\n  font-weight: bold;\r\n  text-align: center;\r\n}\r\n\r\n.container li {\r\n  padding: 1em 0 0 1em;\r\n  list-style: \"\\1F4CE\";\r\n}\r\n\r\n.gerar-senha {\r\n  width: 35%;\r\n  height: 30px;\r\n  font-size: 1em;\r\n  border: none;\r\n  border-radius: 15px;\r\n  background: var(--primary-color);\r\n  position: relative;\r\n  left: 35%;\r\n  cursor: pointer;\r\n}\r\n\r\n.gerar-senha:hover {\r\n  transition: 3s;\r\n  background: var(--secundary-color);\r\n}\r\n\r\ninput[type=\"checkbox\"] {\r\n  width: 15px;\r\n  height: 15px;\r\n}\r\n", "",{"version":3,"sources":["webpack://./src/assets/CSS/style.css"],"names":[],"mappings":"AAEA;EACE,mCAAmC;EACnC,kCAAkC;EAClC,kCAAkC;EAClC,iCAAiC;EACjC,wBAAwB;EACxB,mCAAmC;EACnC,kCAAkC;EAClC,uCAAuC;AACzC;;AAEA;EACE,sBAAsB;EACtB,UAAU;AACZ;;AAEA;EACE,qCAAqC;;EAErC,SAAS;EACT,UAAU;EACV,aAAa;;EAEb;;;;GAIC;;EAED,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,UAAU;EACV,2BAA2B;EAC3B,aAAa;;EAEb,mBAAmB;EACnB;;;;GAIC;EACD,sCAAsC;AACxC;;AAEA;EACE,cAAc;EACd,oBAAoB;AACtB;;AAEA;EACE,gBAAgB;EAChB,6BAA6B;EAC7B,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,oBAAoB;EACpB,oBAAoB;AACtB;;AAEA;EACE,UAAU;EACV,YAAY;EACZ,cAAc;EACd,YAAY;EACZ,mBAAmB;EACnB,gCAAgC;EAChC,kBAAkB;EAClB,SAAS;EACT,eAAe;AACjB;;AAEA;EACE,cAAc;EACd,kCAAkC;AACpC;;AAEA;EACE,WAAW;EACX,YAAY;AACd","sourcesContent":["@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap\");\r\n\r\n:root {\r\n  --primary-color: rgb(205, 206, 207);\r\n  --secundary-color: rgb(82, 83, 85);\r\n  --thirdy-color: rgb(229, 236, 243);\r\n  --fourty-color: rgb(88, 123, 169);\r\n  --shadow: rgb(4, 18, 80);\r\n  --active-text-color: rgb(4, 14, 91);\r\n  --active-color: rgb(244, 245, 250);\r\n  --active-shadow-color: rgb(74, 26, 129);\r\n}\r\n\r\n* {\r\n  box-sizing: border-box;\r\n  outline: 0;\r\n}\r\n\r\nbody {\r\n  font-family: \"Montserrat\", sans-serif;\r\n\r\n  margin: 0;\r\n  padding: 0;\r\n  height: 100vh;\r\n\r\n  background: linear-gradient(\r\n    to top right,\r\n    var(--primary-color),\r\n    var(--secundary-color)\r\n  );\r\n\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.container {\r\n  width: 50%;\r\n  margin: 100px 0px 100px 0px;\r\n  padding: 25px;\r\n\r\n  border-radius: 10px;\r\n  background: linear-gradient(\r\n    to bottom,\r\n    var(--thirdy-color),\r\n    var(--fourty-color)\r\n  );\r\n  box-shadow: 8px 8px 15px var(--shadow);\r\n}\r\n\r\nh1 {\r\n  font-size: 2em;\r\n  color: var(--shadow);\r\n}\r\n\r\n.senha-gerada {\r\n  font-size: 1.5em;\r\n  color: var(--secundary-color);\r\n  font-weight: bold;\r\n  text-align: center;\r\n}\r\n\r\n.container li {\r\n  padding: 1em 0 0 1em;\r\n  list-style: \"\\1F4CE\";\r\n}\r\n\r\n.gerar-senha {\r\n  width: 35%;\r\n  height: 30px;\r\n  font-size: 1em;\r\n  border: none;\r\n  border-radius: 15px;\r\n  background: var(--primary-color);\r\n  position: relative;\r\n  left: 35%;\r\n  cursor: pointer;\r\n}\r\n\r\n.gerar-senha:hover {\r\n  transition: 3s;\r\n  background: var(--secundary-color);\r\n}\r\n\r\ninput[type=\"checkbox\"] {\r\n  width: 15px;\r\n  height: 15px;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -591,8 +674,11 @@ var __webpack_exports__ = {};
   !*** ./src/main.js ***!
   \*********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _assets_CSS_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./assets/CSS/style.css */ "./src/assets/CSS/style.css");
+/* harmony import */ var _modules_formGeraSenha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/formGeraSenha */ "./src/modules/formGeraSenha.js");
+/* harmony import */ var _assets_CSS_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/CSS/style.css */ "./src/assets/CSS/style.css");
 
+
+(0,_modules_formGeraSenha__WEBPACK_IMPORTED_MODULE_0__["default"])();
 })();
 
 /******/ })()

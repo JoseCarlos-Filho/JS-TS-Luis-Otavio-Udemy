@@ -17,7 +17,13 @@ const simbolos = ",.;~^[]{}!@#$%*()_+=-";
 // gera simbolo de acordo com o range da minha string de simbolos.
 const geraSimbolo = () => simbolos[rand(0, simbolos.length)];
 
-function geraSenha(quantidade, maiusculas, minusculas, numeros, simbolos) {
+export default function geraSenha(
+  quantidade,
+  maiusculas,
+  minusculas,
+  numeros,
+  simbolos
+) {
   const senhaArray = [];
   quantidade = Number(quantidade);
   for (let i = 0; i < quantidade; i++) {

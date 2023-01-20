@@ -17,14 +17,18 @@ async function walk(files, rootDir) {
     const stats = await fs.stat(fileFullPath);
 
     // remove a pasta git
-    if (/\git/g.test(fileFullPath)) continue;
-    // remove a pasta node modules
-    if (/node_modules/g.test(fileFullPath)) continue;
+    // if (/\git/g.test(fileFullPath)) continue;
+    // // remove a pasta node modules
+    // if (/node_modules/g.test(fileFullPath)) continue;
 
     if (stats.isDirectory()) {
       readdir(fileFullPath);
       continue;
     }
+
+    // lista todo os arquivos com extensão css
+    if (!/\.css$/g.test(fileFullPath)) continue;
+
     console.log(fileFullPath);
   }
 }

@@ -1,3 +1,3 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import "./assets/CSS/style.css";
+import "./assets/css/style.css";

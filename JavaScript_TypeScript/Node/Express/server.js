@@ -1,8 +1,19 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
+
+const mongoose = require("mongoose");
+mongoose
+  .connect(process.env.CONNECTIONSTRING)
+  .then(() => {
+    app.emit("pronto");
+  })
+  .catch((e) => console.log(e));
+
 const routes = require("./routes");
 const path = require("path");
-const meuMiddleware = require("./src/middlewares/middleware");
+const { middlewareGlobal } = require("./src/middlewares/middleware");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -11,12 +22,14 @@ app.use(express.static(path.resolve(__dirname, "public")));
 app.set("views", path.resolve(__dirname, "src", "views"));
 app.set("view engine", "ejs");
 
-app.use(meuMiddleware);
+app.use(middlewareGlobal);
 app.use(routes);
 
-app.listen(3000, () => {
-  console.log("Acessar http://localhost");
-  console.log("servidor executando na porta 3000");
+app.on("pronto", () => {
+  app.listen(3000, () => {
+    console.log("Acessar http://localhost");
+    console.log("servidor executando na porta 3000");
+  });
 });
 
 //  CRUD -> CREATE, READ, UPDATE, DELETE
@@ -30,18 +43,19 @@ app.listen(3000, () => {
 //  sem o ? a rota /testes/ fica inacessível.
 // /profile/3
 //  /prfile/?chave1=valor1&chave2=valor2&chave3=valor3
-// app.get("/testes/:idUsuario?/:parametros?", (req, res) => {
-//   console.log(req.params);
-//   console.log(req.query);
-//   res.send(req.query.facebookprofile);
-// });
 
-// app.post("/", (req, res) => {
-//   console.log(req.body);
-//   res.send(`O que você enviou foi: ${req.body.nome}`);
-//   // res.send("Recebi o formulário");
-// });
+app.get("/testes/:idUsuario?/:parametros?", (req, res) => {
+  console.log(req.params);
+  console.log(req.query);
+  res.send(req.query.facebookprofile);
+});
 
-// app.get("/contato", (req, res) => {
-//   res.send("Obrigado por fazer este contato!!!");
-// });
+app.post("/", (req, res) => {
+  console.log(req.body);
+  res.send(`O que você enviou foi: ${req.body.nome}`);
+  // res.send("Recebi o formulário");
+});
+
+app.get("/contato", (req, res) => {
+  res.send("Obrigado por fazer este contato!!!");
+});

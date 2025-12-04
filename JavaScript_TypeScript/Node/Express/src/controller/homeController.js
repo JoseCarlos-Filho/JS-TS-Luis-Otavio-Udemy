@@ -9,7 +9,10 @@
 
 exports.paginaInicial = (req, res) => {
   console.log("Inicio");
-  res.render("index");
+  res.render("index", {
+    titulo: "Este é o título da página",
+    numeros: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  });
   return;
 };
 
